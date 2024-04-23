@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Grade extends Model
 {
     use HasFactory;
+
+    public function assignment_submission () {
+        return $this->belongsTo(AssignmentSubmission::class);
+    }
+
+    public function user () {
+        return $this->belongsTo(User::class);
+    }
 }
