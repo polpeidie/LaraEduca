@@ -9,7 +9,11 @@ class Department extends Model
 {
     use HasFactory;
 
-    public function user () {
+    public function teacher () {
         return $this->belongsTo(User::class);
+    }
+
+    public function courses () {
+        return $this->hasMany(Course::class);
     }
 }
