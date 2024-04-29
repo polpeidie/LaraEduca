@@ -28,4 +28,20 @@ class Course extends Model
     public function course_enrollments () {
         return $this->hasMany(CourseEnrollment::class);
     }
+
+    public function external_resources () {
+        return $this->hasMany(ExternalResource::class);
+    }
+
+    public function forum () {
+        return $this->hasOne(Forum::class);
+    }
+
+    public function quizzes () {
+        return $this->hasMany(Quiz::class);
+    }
+
+    public function resources () {
+        return $this->hasMany(Resource::class);
+    }
 }

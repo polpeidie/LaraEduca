@@ -16,4 +16,8 @@ class GameSession extends Model
     public function user () {
         return $this->belongsTo(User::class);
     }
+
+    public function game_score () {
+        return $this->hasOne(GameScore::class);
+    }
 }

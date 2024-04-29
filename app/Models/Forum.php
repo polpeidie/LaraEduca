@@ -12,4 +12,8 @@ class Forum extends Model
     public function course () {
         return $this->belongsTo(Course::class);
     }
+
+    public function forum_posts () {
+        return $this->hasMany(ForumPost::class);
+    }
 }

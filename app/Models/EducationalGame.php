@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class EducationalGame extends Model
 {
     use HasFactory;
+
+    public function game_sessions () {
+        return $this->hasMany(GameSession::class);
+    }
 }

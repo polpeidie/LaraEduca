@@ -56,4 +56,16 @@ class User extends Authenticatable
     public function course_enrollments () {
         return $this->hasMany(CourseEnrollment::class);
     }
+
+    public function departments () {
+        return $this->hasMany(Department::class);
+    }
+
+    public function forum_posts () {
+        return $this->hasMany(ForumPost::class);
+    }
+
+    public function game_sessions () {
+        return $this->hasMany(GameSession::class);
+    }
 }
