@@ -68,4 +68,8 @@ class User extends Authenticatable
     public function game_sessions () {
         return $this->hasMany(GameSession::class);
     }
+
+    public function role () {
+        return $this->hasOne(Role::class);
+    }
 }
