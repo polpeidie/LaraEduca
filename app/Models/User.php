@@ -45,6 +45,15 @@ class User extends Authenticatable
         ];
     }
 
+    public function getRoute () {
+        return match ((int)$this->role_id) {
+            0 => 'student.dashboard',
+            1 => 'student.dashboard',
+            2 => 'teacher.dashboard',
+            3 => 'admin.dashboard',
+        };
+    }
+
     public function activity_logs () {
         return $this->hasMany(ActivityLog::class);
     }

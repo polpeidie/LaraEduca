@@ -7,9 +7,30 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified', 'role:3'])
+->prefix('admin')  // This adds '/student' to the URL
+->name('admin.')  // This adds 'student.' to the route name
+->group(function() {
+    Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])
+    ->name('dashboard');
+});
+
+Route::middleware(['auth', 'verified', 'role:1'])
+->prefix('student')  // This adds '/student' to the URL
+->name('student.')  // This adds 'student.' to the route name
+->group(function() {
+    Route::get('/dashboard', [\App\Http\Controllers\Student\DashboardController::class, 'index'])
+    ->name('dashboard');
+});
+
+Route::middleware(['auth', 'verified', 'role:2'])
+    ->prefix('teacher')
+    ->name('teacher.')
+    ->group(function() {
+        Route::get('/dashboard', [\App\Http\Controllers\Teacher\DashboardController::class, 'index'])
+            ->name('dashboard');
+        // Other teacher routes can be added here
+    });
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
