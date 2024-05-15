@@ -6,23 +6,14 @@
     </x-slot>
 
     <div class="pt-6 pb-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-center">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col gap-4 justify-center">
             @if (!empty($users))
-                <table class="border border-black border-collapse">
-                    <tr class="border border-black">
-                        <th class="border border-black py-1 w-48">Name</th>
-                        <th class="border border-black py-1 w-48">Email</th>
-                        <th class="border border-black py-1 w-48">Role</th>
-                    </tr>
-                    @foreach ($users as $user)
-                        <tr class="border even:bg-slate-200">
-                            <td class="border py-1 px-2">{{ $user->name }}</td>
-                            <td class="border py-1 px-2">{{ $user->email }}</td>
-                            <td class="border py-1 px-2">{{ $user->role->name }}</td>
-                        </tr>    
-                    @endforeach
-
-                </table>
+                @foreach ($users as $user)
+                    <div class="flex items-center px-52 py-2 justify-between border">
+                        <p>{{ $user->name }} - {{ $user->email }} - {{ $user->role->name }}</p>
+                        <x-danger-button>Delete</x-danger-button>
+                    </div>
+                @endforeach
             @else
                 <p>There are no users:(</p>
             @endif
