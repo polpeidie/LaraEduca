@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -13,6 +14,7 @@ Route::middleware(['auth', 'verified', 'role:3'])
 ->group(function() {
     Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])
     ->name('dashboard');
+    Route::get('/users', [UserController::class, 'index'])->name('users');
 });
 
 Route::middleware(['auth', 'verified', 'role:1'])
