@@ -14,7 +14,10 @@ Route::middleware(['auth', 'verified', 'role:3'])
 ->group(function() {
     Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])
     ->name('dashboard');
-    Route::get('/users', [UserController::class, 'index'])->name('users');
+    Route::get('/users', [UserController::class, 'index'])
+    ->name('users');
+    Route::delete('/users/delete/{user}', [UserController::class, 'destroy'])
+    ->name('users.delete');
 });
 
 Route::middleware(['auth', 'verified', 'role:1'])
