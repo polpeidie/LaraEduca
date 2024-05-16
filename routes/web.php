@@ -18,6 +18,8 @@ Route::middleware(['auth', 'verified', 'role:3'])
     ->name('users');
     Route::delete('/users/delete/{user}', [UserController::class, 'destroy'])
     ->name('users.delete');
+    Route::get('users/create', [UserController::class, 'create'])
+    ->name('users.create');
 });
 
 Route::middleware(['auth', 'verified', 'role:1'])
